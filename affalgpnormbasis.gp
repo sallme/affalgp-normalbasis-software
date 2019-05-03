@@ -10,7 +10,7 @@
  * exists fast algorithms to compute Frobenius, and multiplications.
  * Developed in [EzSa2018], these basis make use of affine algebraic groups 
  * of dimension 1. They are available for different degrees extension
- * and they are constructed from the method described in [Couveignes-Lercier2009].
+ * and they are constructed from the method described in [CoLe2009].
  * It is worth to add that this code proposes 
  * three basis, two of them with low complexity, and each one of them 
  * provides fast multiplication in the considered finite field. Since
