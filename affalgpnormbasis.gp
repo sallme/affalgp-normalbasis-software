@@ -5,18 +5,18 @@
  
  /***
  *
- * This file provides GP 'routines' to handle basis (with low complexity) 
+ * This file provides GP 'routines' to handle bases (with low complexity) 
  * for extensions (of degree d) of finite fields (with q elements) such that there
  * exists fast algorithms to compute Frobenius, and multiplications.
  * Developed in [EzSa2018], these basis make use of affine algebraic groups 
  * of dimension 1. They are available for different degrees extension
- * and can be seen as an extend of elliptic normal basis [CoLe2009] to other
- * algebraic groups. It is worth to add that this code proposes 
+ * and they are constructed from the method described in [Couveignes-Lercier2009].
+ * It is worth to add that this code proposes 
  * three basis, two of them with low complexity, and each one of them 
  * provides fast multiplication in the considered finite field. Since
  * they are normal basis the Frobenius can be computed efficiently.
  * Further we give auxiliary fonctions which are relevant in the sequel.
- * Specially in the Lucas torus case, we implemente a number of functions
+ * Specially in the Lucas torus case, we implement a number of functions
  * in order to manage the group law structure.
  
  * More precisely, given a GP finite field Fq, with q elements, a
@@ -307,7 +307,7 @@ normalBasisWeight(B) =
 /****************************************************************************************************************************
 *****************************************************************************************************************************
 *****************************************************************************************************************************
-**********                                       Normal Basis using Artin-schreier theory                             *******
+**********                        Normal Basis using additive group (Artin-schreier theory)                           *******
 *****************************************************************************************************************************
 *****************************************************************************************************************************
 Implemented Functions                                                                                              **********
@@ -434,7 +434,7 @@ addgroupnormbasisfastmult(A, B, artB) =
 /****************************************************************************************************************************
 *****************************************************************************************************************************
 *****************************************************************************************************************************
-**********                                        Normal Basis using Kummer Theory                                    *******
+**********                            Normal Basis using multiplicative group (Kummer Theory)                         *******
 *****************************************************************************************************************************
 Implemented Functions                                                                                             ***********  
     kummerFindIrreduciblePolynomial(Fq, d)      ---> return a degree d irreducible polynomial over Fq             ***********
