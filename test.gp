@@ -4,7 +4,7 @@
 */
 
 /* Importation of functions */
-read("package/affalgpnormbasis.gp");
+read("affalgpnormbasis.gp");
 
 /**************************************************** Artin Schreier Normal Basis Example :
 p = 5, q = p^3, and d = 5
