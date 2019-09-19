@@ -307,7 +307,7 @@ normalBasisWeight(B) =
 /****************************************************************************************************************************
 *****************************************************************************************************************************
 *****************************************************************************************************************************
-**********                        Normal Basis using additive group (Artin-schreier theory)                           *******
+**********                                Normal Basis using additive group (Artin-schreier theory)                   *******
 *****************************************************************************************************************************
 *****************************************************************************************************************************
 Implemented Functions                                                                                              **********
@@ -434,7 +434,7 @@ addgroupnormbasisfastmult(A, B, artB) =
 /****************************************************************************************************************************
 *****************************************************************************************************************************
 *****************************************************************************************************************************
-**********                            Normal Basis using multiplicative group (Kummer Theory)                         *******
+**********                                  Normal Basis using multiplicative group (Kummer Theory)                   *******
 *****************************************************************************************************************************
 Implemented Functions                                                                                             ***********  
     kummerFindIrreduciblePolynomial(Fq, d)      ---> return a degree d irreducible polynomial over Fq             ***********
@@ -1009,7 +1009,7 @@ luctorusnormbasis(TD, d) =
                        \\        LucBtest[k+1] = Nelt^(q^k);
                        \\   );
 
-    return([LucB, b, t]);
+    return([LucB, b, t, csta, cstb]);
 }
 
 
@@ -1023,7 +1023,7 @@ luctorusnormbasis(TD, d) =
 luctorusnormbasisfastmult(A, B, TD) = 
 {
 	my(p = A.p, D = TD[1], d = (A.f)/D.f);
-	my([lucB, b, t] = luctorusnormbasis(TD, d), Nelt = lucB[1]);
+	my([lucB, b, t, csta, cstb] = luctorusnormbasis(TD, d), Nelt = lucB[1]);
     my(alph, beta);
     my(v0b, Zi0, Iota, R, Ur, Wr, Uri, Sigmax, Sigmay, AB);
 	
@@ -1037,11 +1037,11 @@ luctorusnormbasisfastmult(A, B, TD) =
         Wr = vector(d);
             for(i=1, d,
                       P     = lucasAdd(TD, R, lucasExponentiation(TD, t, i-1));
-                      Ur[i] = lucasUot(TD, t, P)-1;
+                      Ur[i] = csta*lucasUot(TD, t, P) + cstb;
                       v0    = (P[1]-1) / P[2];
                       Wr[i] = 1 / v0^2;
                 );       
-        Uri = fastConvolutionalProduct(Ur, Wr);
+        Uri = invConvolutionalProduct(Ur);
 				   
 		print("\e[1;34mWe work with the following multiplication parameters:\e[0m ");
 		print("v0   = "v0b); print("Zi0  = "Zi0); print("Iota = "Iota); 
@@ -1088,7 +1088,7 @@ luctorusnormbasisfastmult(A, B, TD) =
  * [CoLe2013] Jean-Marc Couveignes and Reynald Lercier. "Fast construction of irreducible 
  *  polynomials over finite fields", Israel Journal of Mathematics, 194 (2013), pp. 77-105.
  *
- * [EzSa2018] Tony Ezome and Mohamadou Sall. Normal Basis using 1-dimensional Algebraic Groups 
- *	To appear, 2018.
+ * [EzSa2018] Tony Ezome and Mohamadou Sall. "Normal bases from 1-dimensional algebraic groups".
+ *  Journal of Symbolic Computation, https://doi.org/10.1016/j.jsc.2019.07.002 2019..
  *
  **************************************************************************************************/
