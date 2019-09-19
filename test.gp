@@ -4,7 +4,7 @@
 */
 
 /* Importation of functions */
-read("affalgpnormbasis.gp");
+read("PariCode/affalgpnormbasis/package/affalgpnormbasis.gp");
 
 /**************************************************** Artin Schreier Normal Basis Example :
 p = 5, q = p^3, and d = 5
@@ -15,13 +15,13 @@ addgroupnormbasistest() =
 	my(p = 5, d = 5, Fp = ffgen(p), Fq = ffgen(5^3, 'r));
 	my(N, A, B);
 	     
-		 print("!!! \e[1;34mThis function allows us to test the normal basis using Artin-Schreier theory\e[0m !!!");
+		 print("!!! \e[1;34mThis function allows us to test the normal basis using the additive group.\e[0m !!!");
 		 print("**********************************************************************************");
 		 print("******************************** \e[1;34mChosen parameters\e[0m *******************************");
 		 print("**********************************************************************************");
          print("   The characteristic p =" p ", the degree d = " d ", and q = " p^3);
 		 print("**********************************************************************************");
-		 print("************************* \e[1;34mConctruction of the normal basis\e[0m ***********************");
+		 print("************************* \e[1;34mConstruction of the normal basis\e[0m ***********************");
 		 print("**********************************************************************************");
 		 N = addgroupnormbasis(Fq, d);
 		    if(type(N)=="t_STR", return(N));
@@ -31,10 +31,10 @@ addgroupnormbasistest() =
 		 print("Is N a normal basis? (1=yes, 0=no): " isnormal(N[1], d));
 		 print("For a relative representation of N use 'VecrepresentInExtendedPolBasis'");
 		 print("**********************************************************************************");
-		 print("********************** \e[1;34mComplexity of the normal basis\e[0m ****************************");
+		 print("************************ \e[1;34mWeight of the normal basis\e[0m ******************************");
 		 print("**********************************************************************************");
-	     print("Note: The complexity must be less or equal to 3*p-2=" 3*p-2);						 
-         print("We found the following complexity: " normalBasisWeight(N));
+	     print("Note: The weight must be less or equal to 3*p-2=" 3*p-2);						 
+         print("We found the following weight: " normalBasisWeight(N));
 		 
 		 /* Multiplication of two elements A and B in the normal basis */
 		 print("**********************************************************************************");
@@ -58,31 +58,31 @@ multgroupnormbasistest() =
 {	 
      my(p = 11, d = 5, Fp = ffgen(p), q=p^2, Fq = ffgen(q, 'r));
 	     
-		 print("   !!! \e[1;34mThis function allows us to test the normal basis using Kummer theory\e[0m !!!");
-		 print("**********************************************************************************");
-		 print("******************************** \e[1;34mChosen parameters\e[0m *******************************");
-		 print("**********************************************************************************");
+		 print("   !!! \e[1;34mThis function allows us to test the normal basis using the multiplicative group\e[0m !!!");
+		 print("**********************************************************************************************");
+		 print("************************************** \e[1;34mChosen parameters\e[0m *************************************");
+		 print("**********************************************************************************************");
          print("   The characteristic p =" p ", the degree d = " d ", and q = " q);
 	     N = multgroupnormbasis(Fq, d);
 		    if(type(N)=="t_STR", return(N));
-         print("**********************************************************************************");
-		 print("************************* \e[1;34mConctruction of the normal basis\e[0m ***********************");
-		 print("**********************************************************************************");			
+         print("**********************************************************************************************");
+		 print("******************************* \e[1;34mConstruction of the normal basis\e[0m *****************************");
+		 print("**********************************************************************************************");			
          print("\e[1;34mA vector N, supposed to form a normal basis, is found\e[0m");
 	     print("N = "N);
 		 \\print("N = "VecrepresentInExtendedPolBasis(N, Fq));
 		 print("Is N a normal basis? (1=yes, 0=no): " isnormal(N[1], d));
 		 print("For a relative representation of N use 'VecrepresentInExtendedPolBasis'");
-		 print("**********************************************************************************");
-		 print("********************** \e[1;34mComplexity of the normal basis\e[0m ****************************");
-		 print("**********************************************************************************");
-	     print("Note: The complexity must be less or equal to 3*p-2=" 3*p-2);						 
-         print("We found the following complexity: " normalBasisWeight(N));
+		 print("**********************************************************************************************");
+		 print("****************************** \e[1;34mWeight of the normal basis\e[0m ************************************");
+		 print("**********************************************************************************************");
+	     print("Note: The weight must be less or equal to 3*d-2=" 3*d-2);						 
+         print("We found the following weight: " normalBasisWeight(N));
 		 
 		 /* Multiplication of two elements A and B in the normal basis */
-		 print("**********************************************************************************");
-		 print("******************** \e[1;34mMultiplication in the normal basis\e[0m **************************");
-		 print("**********************************************************************************");
+		 print("**********************************************************************************************");
+		 print("************************** \e[1;34mMultiplication in the normal basis\e[0m ********************************");
+		 print("**********************************************************************************************");
 		     A = random(N[1]);
 		     B = random(N[1]);
 		     multgroupnormbasisfastprod(A, B, N);
@@ -143,7 +143,7 @@ luctorusnormbasistest() =
 					
 		/* Construction of the normal element */
 		    print("**********************************************************************************");
-		    print("************************* \e[1;34mConctruction of the normal basis\e[0m ***********************");
+		    print("************************* \e[1;34mConstruction of the normal basis\e[0m ***********************");
 		    print("**********************************************************************************");
             [cstad, cstbd] = ffmap(mFqd, [csta, cstb]);
             Nelt = cstad*lucasUot(TDd, ffmap(mFqd, t), b) + cstbd;				    	 
